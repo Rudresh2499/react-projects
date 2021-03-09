@@ -34,13 +34,13 @@ function RegisterTestScreen(props) {
     function registerClickHandler() {
         var userInputObject = new RegisterModel(firstName, lastName, email, password, mobileNumber);
         
-        responseHandler(201)
         fetch('http://10.0.3.108:3001/user/register', {
             method: "POST",
             body: JSON.stringify(userInputObject),
             headers: {"Content-type": "application/json; charset=UTF-8"},
         })
-        .then(response => responseHandler(response.status))
+        .then(response => response.json())
+        .then(json => responseHandler(json.status))
     }
  
     return(
