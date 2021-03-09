@@ -1,0 +1,35 @@
+<FlatList style = {{padding: 5, borderWidth: 1, flex: 1,}} data = {orderData} keyExtractor = {(item, index) => item.part_id.toString()} renderItem = {({item}) =>
+    <View style = {styles.outerContainer}>
+        <View style = { styles.individualOrderContainer}>
+            <Image 
+                style = {styles.imageContainer}
+                source = {{
+                    uri: item.image_path
+                }}
+            />
+            <View style = {styles.productContainer}>
+                <Text style = {styles.titleContainer}>{item.part_title}</Text>
+                <Text style = {styles.priceContainer}>$ {item.part_price}</Text>
+            </View>
+        </View>
+        <View style = {styles.listBtnContainer}>
+            <CustomButton 
+                title = "Buy Again"
+                width = {150}
+                height = {35}
+                borderColor = "#007aff"
+                borderWidth = {2}
+                textColor = "#007aff"
+            />
+            <CustomButton 
+                title = "Delete Item"
+                width = {150}
+                height = {35}
+                borderColor = "#007aff"
+                borderWidth = {2}
+                textColor = "#007aff"
+                marginLeft = {23}
+            />
+        </View>
+    </View>
+}/>
