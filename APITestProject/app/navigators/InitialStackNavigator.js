@@ -5,6 +5,7 @@ import OnClickAPIPostScreen from "../screens/OnClickAPIPostScreen";
 import TestScreen from "../screens/TestScreen";
 import ProductDetailScreen from "../screens/ProductDetailScreen";
 import LoginTestScreen from "../screens/LoginTestScreen";
+import RegisterTestScreen from "../screens/RegisterTestScreen";
 
 const InitialStack = createStackNavigator();
 
@@ -15,7 +16,8 @@ function InitialStackNavigator(params) {
             {/* <InitialStack.Screen name = "OnClickAPIPostScreen" component = { OnClickAPIPostScreen }/> */}
             {/* <InitialStack.Screen name = "TestScreen" component = { TestScreen } /> */}
             {/* <InitialStack.Screen name = "ProductDetailScreen" component = { ProductDetailScreen }/> */}
-            <InitialStack.Screen name = "LoginTestScreen" component = { LoginTestScreen } />
+            {/* <InitialStack.Screen name = "LoginTestScreen" component = { LoginTestScreen } /> */}
+            <InitialStack.Screen name = "RegisterTestScreen" component = { RegisterTestScreen } />
         </InitialStack.Navigator>
     )
 }
