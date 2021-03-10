@@ -1,17 +1,22 @@
 import React, { useState }from "react";
-import { Button, FlatList, SafeAreaView, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { Button, FlatList, SafeAreaView, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 import Menu, { MenuItem, MenuDivider } from "react-native-material-menu";
 import ListingParametersModel from "../modelClasses/ListingParametersModel";
 import ProductListModel from "../modelClasses/ProductListModel";
+import CategoryData from "../staticData/CategoryData";
+import SubCategoryData from "../staticData/SubCategoryData";
+import AntIcons from "react-native-vector-icons/AntDesign";
+import DropDownPicker from "react-native-dropdown-picker";
 
 //TODO UI Changes.
 
 let traversalElement = new ProductListModel();
 let tempArray = new Array();
+let pageSizeArray = ["1","2","3","4","5","6","7","8","9","10"];
 
 function ProductListingTestScreen(props) {
     const [pageSize, setPageSize] = useState(null);
-    const [pageNumber, setPageNumber] = useState(null);
+    const [pageNumber, setPageNumber] = useState(1);
     const [categoryId, setCategoryId] = useState(null);
     const [responseData, setResponseData] = useState([]);
 
@@ -50,45 +55,72 @@ function ProductListingTestScreen(props) {
     }
 
     return(
-        <SafeAreaView style = {{flex: 1,}}>
-            <View style = {{flex: 2}}>
-                <TextInput
-                    placeholder = "Page Size"
-                    style = {{borderWidth: 1, padding: 5, margin: 5}}
-                    onChangeText = {(val) => setPageSize(val)}
-                />
-                <TextInput
-                    placeholder = "Page Number"
-                    style = {{borderWidth: 1, padding: 5, margin: 5}}
-                    onChangeText = {(val) => setPageNumber(val)}
-                />
-                <TextInput
-                    placeholder = "Category Id"
-                    style = {{borderWidth: 1, padding: 5, margin: 5}}
-                    onChangeText = {(val) => setCategoryId(val)}
-                />
-                <Button 
-                    title = "Load Parameters"
-                    onPress = { loadParametersHandler }
-                />
+        <SafeAreaView style = {styles.viewContainer}>
+            <View style = {styles.parametersContainer}>
             </View>
-            <View style = {{flex: 6, borderWidth: 1,}}>
-                <FlatList 
-                    data = {responseData}
-                    keyExtractor = { item => item.part_id.toString() }
-                    renderItem = {({item}) =>
-                    // Each item of the Flatlist is nested inside a Touchable Opacity that can be used to navigate to the product detail screen.
-                        <TouchableOpacity 
-                            style = {{flex: 1, width: 300, borderRadius: 15, borderWidth: 1, padding: 10, margin: 10,}}
-                            onPress = { () => productNavigationHandler(item) }
-                        >
-                            <Text>{item.part_title}</Text>
-                        </TouchableOpacity>
-                    }
-                />
+            <View style = {styles.flatListWrapper}>
+                <Text>FlatList Wrapper</Text>
+            </View>
+            <View style = {styles.pagingNavigator}>
+                <TouchableOpacity style = {styles.bottomElementConatiner}>
+                    <AntIcons name = "stepbackward" size = {30}/>
+                </TouchableOpacity>
+                <TouchableOpacity style = {styles.bottomElementConatiner}>
+                    <AntIcons name = "banckward" size = {30}/>
+                </TouchableOpacity>
+                <View style = {styles.bottomElementConatiner}>
+                    <Text style = {{ fontSize: 20, }}>{pageNumber}</Text>
+                </View>
+                <TouchableOpacity style = {styles.bottomElementConatiner}>
+                    <AntIcons name = "forward" size = {30}/>
+                </TouchableOpacity>
+                <TouchableOpacity style = {styles.bottomElementConatiner}>
+                    <AntIcons name = "stepforward" size = {30}/>
+                </TouchableOpacity>
             </View>
         </SafeAreaView>
     )
 }
+
+const styles = StyleSheet.create(
+    {
+        bottomElementConatiner: {
+            flex: 1,
+            height: 43,
+            // borderWidth: 1,
+            marginLeft: 5,
+            marginRight: 5,
+            marginTop: 5,
+            alignItems: "center",
+            justifyContent: "center",
+        },
+
+        flatListWrapper: {
+            flex: 12,
+            borderWidth: 1,
+        },
+
+        pagingNavigator: {
+            flex: 1,
+            flexDirection: "row",
+            flexWrap: "wrap",
+            paddingLeft: 5,
+            paddingRight: 5,
+            borderWidth: 1,
+            justifyContent: "center",
+            alignItems: "center",
+        },
+
+        parametersContainer: {
+            flex: 1,
+            borderWidth: 1,
+        },
+
+        viewContainer: {
+            flex: 1,
+            borderWidth: 1,
+        },
+    }
+)
 
 export default ProductListingTestScreen;

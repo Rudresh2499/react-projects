@@ -1,1 +1,12 @@
-API localhost : 10.0.3.108
+<FlatList 
+    data = {responseData}
+    keyExtractor = { item => item.part_id.toString() }
+    renderItem = {({item}) =>
+    // Each item of the Flatlist is nested inside a Touchable Opacity that can be used to navigate to the product detail screen.
+        <TouchableOpacity 
+            onPress = { () => productNavigationHandler(item) }
+        >
+            <Text>{item.part_title}</Text>
+        </TouchableOpacity>
+    }
+/>

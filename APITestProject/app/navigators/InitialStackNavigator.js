@@ -8,6 +8,7 @@ import LoginTestScreen from "../screens/LoginTestScreen";
 import RegisterTestScreen from "../screens/RegisterTestScreen";
 import ProductListingTestScreen from "../screens/ProductListingTestScreen";
 import ProductSearchingTestScreen from "../screens/ProductSearchingTestScreen";
+import GetUserAddressTestScreen from "../screens/GetUserAddressTestScreen";
 
 const InitialStack = createStackNavigator();
 
@@ -21,7 +22,8 @@ function InitialStackNavigator(params) {
             {/* <InitialStack.Screen name = "LoginTestScreen" component = { LoginTestScreen } /> */}
             {/* <InitialStack.Screen name = "RegisterTestScreen" component = { RegisterTestScreen } /> */}
             {/* <InitialStack.Screen name = "ProductListingTestScreen" component = { ProductListingTestScreen } /> */}
-            <InitialStack.Screen name = "ProductSearchingTestScreen" component = { ProductSearchingTestScreen } />
+            {/* <InitialStack.Screen name = "ProductSearchingTestScreen" component = { ProductSearchingTestScreen } /> */}
+            <InitialStack.Screen name = "GetUserAddressTestScreen" component = { GetUserAddressTestScreen } />
         </InitialStack.Navigator>
     )
 }
