@@ -7,3 +7,4 @@ There are two projects contained in the repository.
 
 1) NavigationDemo :- Contains initial implementation of Navigation, FlatList, Custom Components etc.
 2) APITest :- Contains the initial implementation of Fetch API usage to make GET and POST requests.
+3) APITest_V2 :- Added because APITest suddenly stopped working on my machine.
