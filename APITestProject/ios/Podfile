@@ -10,14 +10,6 @@ target 'APITestProject' do
 
   pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
 
-  post_install do |installer|
-    installer.pods_project.targets.each do |target|
-        target.build_configurations.each do |config|
-            config.build_settings['OTHER_CPLUSPLUSFLAGS'] = '-DDONT_AUTOINSTALL_REANIMATED'
-        end
-    end
- end
-
   target 'APITestProjectTests' do
     inherit! :complete
     # Pods for testing
