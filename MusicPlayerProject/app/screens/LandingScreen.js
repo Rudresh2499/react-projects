@@ -6,7 +6,7 @@ import { TabActions, useIsFocused } from "@react-navigation/native";
 import Fontisto from "react-native-vector-icons/Fontisto";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import AntDesignIcons from "react-native-vector-icons/AntDesign";
-import TrackPlayer, { usePlaybackState, useTrackPlayerEvents } from "react-native-track-player";
+import TrackPlayer, { usePlaybackState, useTrackPlayerEvents, useTrackPlayerProgress } from "react-native-track-player";
 import staticSongList from "../testStaticData/tempSongListData";
 import TrackModelClass from "../modelClasses/TrackModelClass";
 
@@ -133,6 +133,23 @@ function LandingScreen(props) {
         }
     }, [isFocused, playbackState])
 
+    // function ProgressBar() {
+    //     const progress = useTrackPlayerProgress();
+
+    //     return(
+    //         <View style = {styles.progress}>
+    //             <View style = {{ flex: progress.position, backgroundColor: "red" }}>
+    //                 <View
+    //                     style={{
+    //                     flex: progress.duration - progress.position,
+    //                     backgroundColor: "grey"
+    //                     }}
+    //                 />
+    //             </View>
+    //         </View>
+    //     )
+    // }
+
     return(
         <ImageBackground source = {{uri: artwork}} style = {styles.backgroundImage} blurRadius = {10}>
             <ImageBackground style={{ width: "100%", height: "100%" }} imageStyle={{ backgroundColor: "#000000", opacity: 0.3 }}>
@@ -177,11 +194,6 @@ function LandingScreen(props) {
                             onPress = {playlistClickHandler}
                         >
                             <Fontisto name = "play-list" size = {20} color = "#ffffff"/>
-                        </TouchableOpacity>
-                        <TouchableOpacity 
-                            style = {styles.shuffleContainer}
-                        >
-                            <Ionicons name = "ios-shuffle" size = {35} color = "#ffffff"/>
                         </TouchableOpacity>
                     </View>
                 </View>
@@ -296,14 +308,21 @@ const styles = StyleSheet.create(
 
         playlistContainer: {
             flex: 1,
-            alignItems: "flex-start",
+            alignItems: "center",
             justifyContent: "center",
+        },
+
+        progress: {
+            height: 1,
+            width: "90%",
+            marginTop: 10,
+            flexDirection: "row"
         },
 
         progressBarContainer:{
             flex: 1,
-            // borderWidth: 2,
-            // borderColor: "#ffffff",
+            borderWidth: 2,
+            borderColor: "#ffffff",
         },
 
         shuffleContainer: {
