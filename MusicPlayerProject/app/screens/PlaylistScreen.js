@@ -5,7 +5,7 @@ import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
 import staticSongList from "../testStaticData/tempSongListData";
 
 function PlaylistScreen(props) {
-    const {albumCover} = props.route.params
+    const {artwork} = props.route.params
     // var [imageUrl, setImageUrl] = useState(null)
 
     function goBackHandler() {
@@ -16,15 +16,17 @@ function PlaylistScreen(props) {
         // console.log(pressedSong)
 
         props.navigation.navigate("LandingScreen", {
-            albumCover: pressedSong.albumCoverUrl,
-            albumName: pressedSong.albumName,
-            artistName: pressedSong.artistName,
-            songName: pressedSong.songName,
+            id: pressedSong.id,
+            artwork: pressedSong.artwork,
+            album: pressedSong.album,
+            artist: pressedSong.artist,
+            title: pressedSong.title,
+            url: pressedSong.url
         })
     }
 
     return(
-        <ImageBackground source={{uri: albumCover}} style={{ width: "100%", height: "100%" }} blurRadius={10}>
+        <ImageBackground source={{uri: artwork}} style={{ width: "100%", height: "100%" }} blurRadius={10}>
             <ImageBackground style={{ width: "100%", height: "100%" }} imageStyle={{ backgroundColor: "#000000", opacity: 0.3 }}>
                 <SafeAreaView style={styles.container}>
                     <StatusBar barStyle="light-content" />
@@ -44,7 +46,7 @@ function PlaylistScreen(props) {
                         <View style={styles.listContainer}>
                             <FlatList 
                                 data = {staticSongList}
-                                keyExtractor = { item => item.trackId.toString() }
+                                keyExtractor = { item => item.id }
                                 renderItem = {({item, index}) => 
                                     <View style={styles.individualItemContainer}>
                                         <TouchableOpacity 
@@ -52,15 +54,15 @@ function PlaylistScreen(props) {
                                             onPress = {() => songPressHandler(item)}
                                         >
                                             <View style={styles.coverImageContainer}>
-                                                <ImageBackground source={{ uri: item.albumCoverUrl }} style={{ height: "100%", width: "100%" }} imageStyle={{ borderRadius: 15, }}></ImageBackground>
+                                                <ImageBackground source={{ uri: item.artwork }} style={{ height: "100%", width: "100%" }} imageStyle={{ borderRadius: 15, }}></ImageBackground>
                                             </View>
                                             <View style={styles.textDataWrapper}>
                                                 <ImageBackground style={{ width: "100%", height: "100%", borderRadius: 15, borderWidth: 2, borderColor: "#ffffff" }} imageStyle={{ backgroundColor: "#000000", opacity: 0.4, borderRadius: 15, }}>
                                                     <View style={styles.songTitleContainer}>
-                                                        <Text style = {styles.songTitleText}>{item.songName}</Text>
+                                                        <Text style = {styles.songTitleText}>{item.title}</Text>
                                                     </View>
                                                     <View style={styles.artistNameContainer}>
-                                                        <Text style = {styles.artistNameText}>{item.artistName}</Text>
+                                                        <Text style = {styles.artistNameText}>{item.artist}</Text>
                                                     </View>
                                                 </ImageBackground>
                                             </View>

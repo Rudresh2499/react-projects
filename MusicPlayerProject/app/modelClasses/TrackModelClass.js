@@ -1,18 +1,18 @@
 class TrackModelClass {
-    trackId: Number;
-    artistName: String;
-    albumName: String;
-    albumCoverUrl: String;
-    songName: String;
-    songUrl: String;
+    id: String;
+    artist: String;
+    album: String;
+    artwork: String;
+    title: String;
+    url: String;
 
-    constructor(trackId, artistName, albumName, albumCoverUrl, songName, songUrl){
-        this.trackId = trackId;
-        this.artistName = artistName;
-        this.albumName = albumName;
-        this.albumCoverUrl = albumCoverUrl;
-        this.songName = songName;
-        this.songUrl = songUrl;
+    constructor(id, artist, album, artwork, title, url){
+        this.id = id;
+        this.artist = artist;
+        this.album = album;
+        this.artwork = artwork;
+        this.title = title;
+        this.url = url;
     }
 }
 
