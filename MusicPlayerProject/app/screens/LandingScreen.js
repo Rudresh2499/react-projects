@@ -10,8 +10,6 @@ import TrackPlayer, { usePlaybackState, useTrackPlayerEvents } from "react-nativ
 import staticSongList from "../testStaticData/tempSongListData";
 import TrackModelClass from "../modelClasses/TrackModelClass";
 
-// const image = "https://i.scdn.co/image/966ade7a8c43b72faa53822b74a899c675aaafee"
-
 function LandingScreen(props) {
     const [hasRunOnce, setHasRunOnce] = useState(false);
     const [id, setId] = useState("None");
