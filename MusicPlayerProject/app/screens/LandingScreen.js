@@ -24,8 +24,13 @@ function LandingScreen(props) {
     const isFocused = useIsFocused();
     const playbackState = usePlaybackState();
 
+    async function trackChangeHandler() {
+        var currentTrack = await TrackPlayer.getCurrentTrack();
+        hookChangeHandler(currentTrack)
+    }
+
     const stateListener = TrackPlayer.addEventListener('playback-state')
-    const trackChangeListener = TrackPlayer.addEventListener('playback-track-changed')
+    const trackChangeListener = TrackPlayer.addEventListener('playback-track-changed', () => trackChangeHandler())
 
     var tempTrackObject = new TrackModelClass();
 
@@ -122,12 +127,12 @@ function LandingScreen(props) {
     }
 
     useEffect(() => {
+        //TODO API request
         paramLoadHandler()
         if(hasRunOnce === false){
             audioPlayerSetup()
             setHasRunOnce(true)
         }
-        // console.log(playbackState)
     }, [isFocused, playbackState])
 
     return(
@@ -143,13 +148,13 @@ function LandingScreen(props) {
                             <ImageBackground style={{ width: "100%", height: "100%" }} imageStyle={{ backgroundColor: "#000000", borderRadius: 15, opacity: 0.4 }} blurRadius={20}>
                                 <View style = {styles.buttonsContainer}>
                                     <TouchableOpacity style = {styles.buttonWrapper} onPress = {previousClickHandler}>
-                                        <AntDesignIcons name = "stepbackward" size = {30} color = "#ffffff"/>
+                                        <AntDesignIcons name = "stepbackward" size = {40} color = "#ffffff"/>
                                     </TouchableOpacity>
                                     <TouchableOpacity style = {styles.buttonWrapper} onPress = {centerButtonClickHandler}>
-                                        <AntDesignIcons name = {centerButtonName} size = {30} color = "#ffffff"/>
+                                        <AntDesignIcons name = {centerButtonName} size = {40} color = "#ffffff"/>
                                     </TouchableOpacity>
                                     <TouchableOpacity style = {styles.buttonWrapper} onPress = {nextClickHandler}>
-                                        <AntDesignIcons name = "stepforward" size = {30} color = "#ffffff" />
+                                        <AntDesignIcons name = "stepforward" size = {40} color = "#ffffff" />
                                     </TouchableOpacity>
                                 </View>
                             </ImageBackground>
